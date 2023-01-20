@@ -39,6 +39,7 @@ class NewsResourceCardTest {
             NewsResourceCardExpanded(
                 userNewsResource = newsWithKnownResourceType,
                 isBookmarked = false,
+                isViewed = false,
                 onToggleBookmark = {},
                 onClick = {},
                 onTopicClick = {},
@@ -67,6 +68,7 @@ class NewsResourceCardTest {
             NewsResourceCardExpanded(
                 userNewsResource = newsWithUnknownResourceType,
                 isBookmarked = false,
+                isViewed = false,
                 onToggleBookmark = {},
                 onClick = {},
                 onTopicClick = {},
