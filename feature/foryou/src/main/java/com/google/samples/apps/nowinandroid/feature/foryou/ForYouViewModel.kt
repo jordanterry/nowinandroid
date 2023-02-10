@@ -21,8 +21,8 @@ import androidx.lifecycle.viewModelScope
 import com.google.samples.apps.nowinandroid.core.data.repository.UserDataRepository
 import com.google.samples.apps.nowinandroid.core.data.util.SyncStatusMonitor
 import com.google.samples.apps.nowinandroid.core.domain.GetFollowableTopicsUseCase
-import com.google.samples.apps.nowinandroid.core.domain.GetUserNewsResourcesUseCase
 import com.google.samples.apps.nowinandroid.core.domain.model.UserNewsResource
+import com.google.samples.apps.nowinandroid.core.domain.repository.UserNewsResourceRepository
 import com.google.samples.apps.nowinandroid.core.model.data.UserData
 import com.google.samples.apps.nowinandroid.core.ui.NewsFeedUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,7 +42,7 @@ import javax.inject.Inject
 class ForYouViewModel @Inject constructor(
     syncStatusMonitor: SyncStatusMonitor,
     private val userDataRepository: UserDataRepository,
-    getUserNewsResources: GetUserNewsResourcesUseCase,
+    userNewsResourceRepository: UserNewsResourceRepository,
     getFollowableTopics: GetFollowableTopicsUseCase,
 ) : ViewModel() {
 
@@ -57,7 +57,7 @@ class ForYouViewModel @Inject constructor(
         )
 
     val feedState: StateFlow<NewsFeedUiState> =
-        userDataRepository.getFollowedUserNewsResources(getUserNewsResources)
+        userDataRepository.getFollowedUserNewsResources(userNewsResourceRepository)
             .map(NewsFeedUiState::Success)
             .stateIn(
                 scope = viewModelScope,
@@ -107,7 +107,7 @@ class ForYouViewModel @Inject constructor(
  * getUserNewsResources: The `UseCase` used to obtain the flow of user news resources.
  */
 private fun UserDataRepository.getFollowedUserNewsResources(
-    getUserNewsResources: GetUserNewsResourcesUseCase,
+    userNewsResourceRepository: UserNewsResourceRepository,
 ): Flow<List<UserNewsResource>> = userData
     // Map the user data into a set of followed topic IDs or null if we should return an empty list.
     .map { userData ->
@@ -127,7 +127,7 @@ private fun UserDataRepository.getFollowedUserNewsResources(
         if (followedTopics == null) {
             flowOf(emptyList())
         } else {
-            getUserNewsResources(filterTopicIds = followedTopics)
+            userNewsResourceRepository.getUserNewsResources(filterTopicIds = followedTopics)
         }
     }
 
