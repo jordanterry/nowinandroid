@@ -37,7 +37,7 @@ dependencies {
     debugApi(libs.androidx.compose.ui.testManifest)
 
     implementation(project(":core:common"))
-    implementation(project(":core:data"))
+    implementation(project(":core:data:api"))
     implementation(project(":core:domain"))
     implementation(project(":core:model"))
     implementation(project(":core:notifications"))

@@ -33,6 +33,7 @@ android {
 dependencies {
     implementation(project(":core:analytics"))
     implementation(project(":core:common"))
+    api(project(":core:data:api"))
     implementation(project(":core:database"))
     implementation(project(":core:datastore"))
     implementation(project(":core:model"))
