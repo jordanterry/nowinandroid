@@ -16,7 +16,7 @@
 
 package com.google.samples.apps.nowinandroid.core.domain
 
-import dagger.Module
+import dagger.Module1
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
