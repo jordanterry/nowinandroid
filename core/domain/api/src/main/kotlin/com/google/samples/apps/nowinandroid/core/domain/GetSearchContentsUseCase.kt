@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Android Open Source Project
+ * Copyright 2024 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    alias(libs.plugins.nowinandroid.android.library)
-    alias(libs.plugins.nowinandroid.android.library.jacoco)
-    id("com.google.devtools.ksp")
-}
 
-android {
-    namespace = "com.google.samples.apps.nowinandroid.core.domain"
-}
+package com.google.samples.apps.nowinandroid.core.domain
 
-dependencies {
-    api(projects.core.data)
-    api(projects.core.model)
-    api(projects.core.domain.api)
+import com.google.samples.apps.nowinandroid.core.model.data.UserSearchResult
+import kotlinx.coroutines.flow.Flow
 
-    implementation(libs.javax.inject)
-
-    testImplementation(projects.core.testing)
+/**
+ * A use case which returns the searched contents matched with the search query.
+ */
+interface GetSearchContentsUseCase {
+    operator fun invoke(
+        searchQuery: String,
+    ): Flow<UserSearchResult>
 }

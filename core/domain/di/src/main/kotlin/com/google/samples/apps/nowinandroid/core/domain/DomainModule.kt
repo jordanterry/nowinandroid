@@ -17,9 +17,16 @@
 package com.google.samples.apps.nowinandroid.core.domain
 
 import dagger.Module
+import dagger.Binds
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
 @InstallIn(SingletonComponent::class)
 @Module
-interface DomainModule
+interface DomainModule {
+    @Binds
+    fun bindGetSearchContentsUseCase(
+        impl: DefaultGetSearchContentsUseCase
+    ): GetSearchContentsUseCase
+}
+    
