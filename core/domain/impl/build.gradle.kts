@@ -16,19 +16,18 @@
 plugins {
     alias(libs.plugins.nowinandroid.android.library)
     alias(libs.plugins.nowinandroid.android.library.jacoco)
-    alias(libs.plugins.nowinandroid.hilt)
-    id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "com.google.samples.apps.nowinandroid.core.domain.di"
+    namespace = "com.google.samples.apps.nowinandroid.core.domain.impl"
 }
 
 dependencies {
     api(projects.core.data)
     api(projects.core.model)
-
     api(projects.core.domain.api)
-    api(projects.core.domain.impl)
-    api(projects.core.domain)
+
+    implementation(libs.javax.inject)
+
+    testImplementation(projects.core.testing)
 }
