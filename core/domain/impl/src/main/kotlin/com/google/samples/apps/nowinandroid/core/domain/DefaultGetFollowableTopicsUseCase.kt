@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Android Open Source Project
+ * Copyright 2024 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,16 +28,16 @@ import javax.inject.Inject
 /**
  * A use case which obtains a list of topics with their followed state.
  */
-class GetFollowableTopicsUseCase @Inject constructor(
+class DefaultGetFollowableTopicsUseCase @Inject constructor(
     private val topicsRepository: TopicsRepository,
     private val userDataRepository: UserDataRepository,
-) {
+) : GetFollowableTopicsUseCase {
     /**
      * Returns a list of topics with their associated followed state.
      *
      * @param sortBy - the field used to sort the topics. Default NONE = no sorting.
      */
-    operator fun invoke(sortBy: TopicSortField = NONE): Flow<List<FollowableTopic>> = combine(
+    override operator fun invoke(sortBy: TopicSortField): Flow<List<FollowableTopic>> = combine(
         userDataRepository.userData,
         topicsRepository.getTopics(),
     ) { userData, topics ->
@@ -53,9 +53,4 @@ class GetFollowableTopicsUseCase @Inject constructor(
             else -> followedTopics
         }
     }
-}
-
-enum class TopicSortField {
-    NONE,
-    NAME,
 }

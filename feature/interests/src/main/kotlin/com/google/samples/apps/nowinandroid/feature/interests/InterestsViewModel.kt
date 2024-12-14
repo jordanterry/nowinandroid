@@ -37,7 +37,7 @@ import javax.inject.Inject
 class InterestsViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     val userDataRepository: UserDataRepository,
-    getFollowableTopics: GetFollowableTopicsUseCase,
+    getFollowableTopics: com.google.samples.apps.nowinandroid.core.domain.GetFollowableTopicsUseCase,
 ) : ViewModel() {
 
     // Key used to save and retrieve the currently selected topic id from saved state.
@@ -51,7 +51,7 @@ class InterestsViewModel @Inject constructor(
 
     val uiState: StateFlow<InterestsUiState> = combine(
         selectedTopicId,
-        getFollowableTopics(sortBy = TopicSortField.NAME),
+        getFollowableTopics(sortBy = com.google.samples.apps.nowinandroid.core.domain.TopicSortField.NAME),
         InterestsUiState::Interests,
     ).stateIn(
         scope = viewModelScope,

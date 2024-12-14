@@ -16,27 +16,14 @@
 
 package com.google.samples.apps.nowinandroid.core.domain
 
-import dagger.Module
-import dagger.Binds
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import com.google.samples.apps.nowinandroid.core.model.data.FollowableTopic
+import kotlinx.coroutines.flow.Flow
 
-@InstallIn(SingletonComponent::class)
-@Module
-interface DomainModule {
-    @Binds
-    fun bindGetSearchContentsUseCase(
-        impl: DefaultGetSearchContentsUseCase,
-    ): GetSearchContentsUseCase
-
-    @Binds
-    fun bindGetRecentSearchQueriesUseCase(
-        impl: DefaultGetRecentSearchQueriesUseCase,
-    ): GetRecentSearchQueriesUseCase
-
-    @Binds
-    fun bindGetFollowableTopicsUseCase(
-        impl: DefaultGetFollowableTopicsUseCase,
-    ): GetFollowableTopicsUseCase
+interface GetFollowableTopicsUseCase {
+    operator fun invoke(sortBy: TopicSortField = TopicSortField.NONE): Flow<List<FollowableTopic>>
 }
-    
+
+enum class TopicSortField {
+    NONE,
+    NAME,
+}

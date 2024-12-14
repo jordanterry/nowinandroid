@@ -48,7 +48,7 @@ class ForYouViewModel @Inject constructor(
     private val analyticsHelper: AnalyticsHelper,
     private val userDataRepository: UserDataRepository,
     userNewsResourceRepository: UserNewsResourceRepository,
-    getFollowableTopics: GetFollowableTopicsUseCase,
+    getFollowableTopics: com.google.samples.apps.nowinandroid.core.domain.GetFollowableTopicsUseCase,
 ) : ViewModel() {
 
     private val shouldShowOnboarding: Flow<Boolean> =
