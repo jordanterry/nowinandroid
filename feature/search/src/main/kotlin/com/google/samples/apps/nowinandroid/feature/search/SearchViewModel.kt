@@ -42,7 +42,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     getSearchContentsUseCase: GetSearchContentsUseCase,
-    recentSearchQueriesUseCase: GetRecentSearchQueriesUseCase,
+    recentSearchQueriesUseCase: com.google.samples.apps.nowinandroid.core.domain.GetRecentSearchQueriesUseCase,
     private val searchContentsRepository: SearchContentsRepository,
     private val recentSearchRepository: RecentSearchRepository,
     private val userDataRepository: UserDataRepository,

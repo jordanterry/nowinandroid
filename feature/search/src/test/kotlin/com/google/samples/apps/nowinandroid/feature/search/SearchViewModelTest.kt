@@ -59,7 +59,10 @@ class SearchViewModelTest {
         userDataRepository = userDataRepository,
     )
     private val recentSearchRepository = TestRecentSearchRepository()
-    private val getRecentQueryUseCase = GetRecentSearchQueriesUseCase(recentSearchRepository)
+    private val getRecentQueryUseCase =
+        com.google.samples.apps.nowinandroid.core.domain.GetRecentSearchQueriesUseCase(
+            recentSearchRepository
+        )
 
     private lateinit var viewModel: SearchViewModel
 
