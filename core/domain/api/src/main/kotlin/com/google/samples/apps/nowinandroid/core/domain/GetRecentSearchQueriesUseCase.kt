@@ -16,22 +16,9 @@
 
 package com.google.samples.apps.nowinandroid.core.domain
 
-import dagger.Module
-import dagger.Binds
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import com.google.samples.apps.nowinandroid.core.data.model.RecentSearchQuery
+import kotlinx.coroutines.flow.Flow
 
-@InstallIn(SingletonComponent::class)
-@Module
-interface DomainModule {
-    @Binds
-    fun bindGetSearchContentsUseCase(
-        impl: DefaultGetSearchContentsUseCase
-    ): GetSearchContentsUseCase
-
-    @Binds
-    fun bindGetRecentSearchQueriesUseCase(
-        impl: DefaultGetRecentSearchQueriesUseCase
-    ): GetRecentSearchQueriesUseCase
+interface GetRecentSearchQueriesUseCase {
+    operator fun invoke(limit: Int = 10): Flow<List<RecentSearchQuery>>
 }
-    
