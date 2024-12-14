@@ -67,10 +67,11 @@ class ForYouViewModelTest {
         userDataRepository = userDataRepository,
     )
 
-    private val getFollowableTopicsUseCase = GetFollowableTopicsUseCase(
-        topicsRepository = topicsRepository,
-        userDataRepository = userDataRepository,
-    )
+    private val getFollowableTopicsUseCase =
+        com.google.samples.apps.nowinandroid.core.domain.GetFollowableTopicsUseCase(
+            topicsRepository = topicsRepository,
+            userDataRepository = userDataRepository,
+        )
 
     private val savedStateHandle = SavedStateHandle()
     private lateinit var viewModel: ForYouViewModel

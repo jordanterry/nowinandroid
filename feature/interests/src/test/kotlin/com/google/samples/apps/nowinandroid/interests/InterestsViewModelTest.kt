@@ -56,10 +56,11 @@ class InterestsViewModelTest {
 
     private val userDataRepository = TestUserDataRepository()
     private val topicsRepository = TestTopicsRepository()
-    private val getFollowableTopicsUseCase = GetFollowableTopicsUseCase(
-        topicsRepository = topicsRepository,
-        userDataRepository = userDataRepository,
-    )
+    private val getFollowableTopicsUseCase =
+        com.google.samples.apps.nowinandroid.core.domain.GetFollowableTopicsUseCase(
+            topicsRepository = topicsRepository,
+            userDataRepository = userDataRepository,
+        )
     private lateinit var viewModel: InterestsViewModel
 
     @Before

@@ -36,7 +36,7 @@ class GetFollowableTopicsUseCaseTest {
     private val topicsRepository = TestTopicsRepository()
     private val userDataRepository = TestUserDataRepository()
 
-    val useCase = GetFollowableTopicsUseCase(
+    val useCase = com.google.samples.apps.nowinandroid.core.domain.GetFollowableTopicsUseCase(
         topicsRepository,
         userDataRepository,
     )
